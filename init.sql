@@ -1,3 +1,8 @@
+
+CREATE USER IF NOT EXISTS 'user'@'%' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON pizzeria.* TO 'user'@'%';
+FLUSH PRIVILEGES;
+
 CREATE TABLE `User` (
   username VARCHAR(255) PRIMARY KEY,
   password VARCHAR(255) NOT NULL,
