@@ -12,7 +12,7 @@ disallowDirectAccess(__FILE__);
  * @param array $params The parameters to bind to the query.
  * @return array The result set as an associative array.
  */
-function getSql(string $query = "", array $params = []): array
+function getWithSql(string $query = "", array|null $params = null): array
 {
     $pointer = execute($query, $params);
     if ($pointer === false) {
@@ -28,13 +28,13 @@ function getSql(string $query = "", array $params = []): array
  * @param array $params The parameters to bind to the query.
  * @return void
  */
-function executeSql(string $query = "", array $params = []): void
+function executeWithSql(string $query = "", array|null $params = null): void
 {
     execute($query, $params);
 }
 
 /**
- * !USE ONE OF THE HELPER FUNCTIONS (executeSql() or getSql()), NOT THIS FUNCTION DIRECTLY!
+ * !USE ONE OF THE HELPER FUNCTIONS (executeWithSql() or getWithSql()), NOT THIS FUNCTION DIRECTLY!
  * 
  * Executes a SQL query and returns the PDOStatement object. 
  *
@@ -43,7 +43,7 @@ function executeSql(string $query = "", array $params = []): void
  * @return bool|PDOStatement Returns false on failure, or the PDOStatement object on success.
  */
 
-function execute(string $query = "", array $params = []): bool|PDOStatement
+function execute(string $query = "", array|null $params = null): bool|PDOStatement
 {
     if (empty($query)) {
         return false;
