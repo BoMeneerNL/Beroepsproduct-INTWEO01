@@ -1,4 +1,7 @@
+FROM php:8.4-apache
 
-FROM php:8.4-cli
-WORKDIR /var/www/html
+RUN a2enmod rewrite
+
 RUN docker-php-ext-install pdo_mysql
+
+WORKDIR /var/www/html
