@@ -3,10 +3,6 @@ form > input {
   border-radius: 4px;
   padding: 8px;
 }
-form > input:invalid {
-  border-color: red;
-}
-
 
 div.circular-progress {
 }
