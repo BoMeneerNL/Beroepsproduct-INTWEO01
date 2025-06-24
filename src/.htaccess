@@ -3,4 +3,5 @@ RewriteEngine On
 RewriteRule ^(loaders|templates)(/.*)?$ - [R=403,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([a-zA-Z0-9_-]+)$ $1.php [L]
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+)$ $1.php [L]
