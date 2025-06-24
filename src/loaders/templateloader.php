@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../utils.php';
+disallowDirectAccess(__FILE__);
 
 function getTemplate(string $templateName, array|null $templateData = null)
 {
