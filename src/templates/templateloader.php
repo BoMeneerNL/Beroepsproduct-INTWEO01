@@ -15,7 +15,7 @@ function getTemplate(string $templateName, array|null $templateData = null)
             //@TODO make this better with adding {{ and }} to make use of regex instead of using the space shenanigan
             if(str_starts_with($value,"$")){
                 foreach($templateData as $key => $data){
-                    if($value == "$" . $key){
+                    if($value == "$$key"){
                         $text = str_replace($value, htmlspecialchars($data), $text);
                     }
                 }
