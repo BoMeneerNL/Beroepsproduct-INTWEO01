@@ -1,6 +1,6 @@
 <?php
 require_once "loaders/templateloader.php";
-printTemplate("pre_content", templateData: ["siteTitle" => "Register"]);
+printTemplate("pre_content", templateData: ["siteTitle" => "Register", "lang" => "nl"]);
 printTemplate("load_css", templateData: ["css_location" => "/styles/forms.css"]);
 ?>
 <form method="post" action="register.php">
