@@ -4,6 +4,8 @@
 *    if used in Docker context the host is the name of the service in the docker-compose file,
 *    not localhost
 */
+require_once 'utils.php';
+disallowDirectAccess(__FILE__);
 $db_host = "";
 $db_port = 3306;
 $db_database="";
