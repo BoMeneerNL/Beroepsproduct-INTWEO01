@@ -18,6 +18,11 @@ class SQLConnection
             $db_pass
         );
     }
+    public function destroy()
+    {
+        $this->conn = null;
+        
+    }
 
     function getWithSql(string $query = "", array|null $params = null): array
     {
