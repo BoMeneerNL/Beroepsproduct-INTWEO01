@@ -24,7 +24,7 @@ class SQLConnection
         
     }
 
-    function getWithSql(string $query = "", array|null $params = null): array
+    public function getWithSql(string $query = "", array|null $params = null): array
     {
         $pointer = $this->execute($query, $params);
         if ($pointer === false) {
@@ -33,12 +33,12 @@ class SQLConnection
         return $pointer->fetchAll();
     }
 
-    function executeWithSql(string $query = "", array|null $params = null): void
+    public function executeWithSql(string $query = "", array|null $params = null): void
     {
         $this->execute($query, $params);
     }
 
-    function execute(string $query = "", array|null $params = null): bool|PDOStatement
+    private function execute(string $query = "", array|null $params = null): bool|PDOStatement
     {
         if (empty($query)) {
             return false;
