@@ -7,12 +7,15 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header("Location: /register?error={$error}", true, 307);
     exit;
 }
-if (!isset($_POST['username']) || !isset($_POST['password'])) {
+
+require_once __DIR__ . '/../utils.php';
+
+if (!mustAllExist($_POST['username'], $_POST['password'], $_POST['first_name'], $_POST['last_name'])) {
+
     header("Location: /register?error=" . urlencode('Field Validation Failed'), true, 307);
     exit;
+
 }
-
-
 
 
 require_once __DIR__ . '/../sqlhandler.php';

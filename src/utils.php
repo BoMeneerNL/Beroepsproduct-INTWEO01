@@ -41,3 +41,12 @@ function groupByArrayKey(string $arrayKey, array $array): array
 
     return $groups;
 }
+
+function mustAllExist(...$args): bool {
+    foreach ($args as $arg) {
+        if (!isset($arg)) {
+            return false;
+        }
+    }
+    return true;
+}
