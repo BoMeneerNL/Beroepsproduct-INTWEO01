@@ -17,16 +17,6 @@ function disallowDirectAccess($file): void
 
 disallowDirectAccess(__FILE__);
 
-
-/**
- * Groups an array by a specific key.
- * This function takes an array and groups its elements by the value of a specified key.
- * !Note: only the first level of the array is considered for grouping.
- *
- * @param string $arrayKey The key to group by.
- * @param array $array The array to group.
- * @return array An associative array where the keys are the values of the specified key in the original array.
- */
 function groupByArrayKey(string $arrayKey, array $array): array
 {
     $groups = [];
