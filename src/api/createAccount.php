@@ -1,18 +1,19 @@
 <?php
 session_start();
 
+require_once __DIR__ . '/../utils.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     $error = urlencode('Wrong Request Method On Request');
-    header("Location: /register?error={$error}", true, 307);
+    redirect("/register?error={$error}");
     exit;
 }
 
-require_once __DIR__ . '/../utils.php';
+
 
 if (!mustAllExist($_POST['username'], $_POST['password'], $_POST['first_name'], $_POST['last_name'])) {
-
-    header("Location: /register?error=" . urlencode('Field Validation Failed'), true, 307);
+    $error = urlencode('Field Validation Failed');
+    redirect("/register?error={$error}");
     exit;
 
 }
@@ -29,7 +30,8 @@ $countForUsername = $db->getWithSql(
 
 $usernameExists = $countForUsername[0]['count'] > 0;
 if ($usernameExists) {
-    header("Location: /register?error=" . urlencode('Username Already Exists'), true, response_code: 307);
+    $error = urlencode('Username Already Exists');
+    redirect("/register?error={$error}");
     exit;
 }
 $creationParams = [
@@ -44,5 +46,6 @@ $db->executeWithSql(
 );
 
 $db->destroy();
-header("Location: /login?success=" . urlencode('Account Created Successfully, you can now login here'), true, response_code: 307);
+redirect("/login?success=" . urlencode('Account Created Successfully, you can now login on this page'));
+
 

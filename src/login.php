@@ -1,8 +1,13 @@
-
 <?php
-
 session_start();
 
+require_once "utils.php";
+
+
+if(isLoggedIn()) {
+    redirect("/");
+    exit();
+}
 require_once "loaders/templateloader.php";
 
 printTemplate("pre_content", templateData: ["siteTitle" => "Login", "lang" => "nl"]);

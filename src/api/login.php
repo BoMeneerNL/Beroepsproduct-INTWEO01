@@ -32,7 +32,9 @@ if(!$usernameExists){
 $loginDetails = $db->getWithSql(
     "SELECT * FROM User WHERE username = :username",
     ['username' => $_POST['username']]
+
 );
+$db->destroy();
 if(!isset($loginDetails[0]['password'])){
     header("Location: /login?error=" . urlencode('Login details not correct'), true, response_code: 307);
     exit;
@@ -41,3 +43,10 @@ if(!password_verify($_POST['password'], $loginDetails[0]['password'])){
     header("Location: /login?error=" . urlencode('Login details not correct'), true, response_code: 307);
     exit;
 }
+
+$_SESSION['user_data'] = [
+    'username' => $loginDetails[0]['username'],
+    'first_name' => $loginDetails[0]['first_name'],
+    'last_name' => $loginDetails[0]['last_name'],
+    'role' => $loginDetails[0]['role']
+];
