@@ -3,15 +3,14 @@ session_start();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     $error = urlencode('Wrong Request Method On Request');
-    header("Location: /login?error={$error}", true, 307);
+    redirect("/login?error={$error}");
     exit;
 }
 
 require_once __DIR__ . '/../utils.php';
 
 if (!mustAllExist($_POST['username'], $_POST['password'])) {
-
-    header("Location: /login?error=" . urlencode('Field Validation Failed'), true, 307);
+    redirect("/login?error=" . urlencode('Field Validation Failed'));
     exit;
 
 }
