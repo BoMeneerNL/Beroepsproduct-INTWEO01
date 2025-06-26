@@ -3,6 +3,8 @@
 require_once 'utils.php';
 disallowDirectAccess(__FILE__);
 
+session_start();
+
 require_once 'env.php';
 
 

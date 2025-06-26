@@ -1,8 +1,39 @@
-form > input {
+
+form input {
   border: 1px solid #ccc;
-  border-radius: 4px;
   padding: 8px;
+  border-radius: 4px;
 }
 
 div.circular-progress {
 }
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1em;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 33.33%;
+  border: 1px solid;
+  padding: 1em;
+  gap: 0.5em;
+  max-width: 700px;
+  border-radius: 16px;
+}
+
+
+@media (max-width: 1040px) {
+  .form-container {
+    width: 90%;
+  }
+}
+
+.center-content-middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

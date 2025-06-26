@@ -2,6 +2,8 @@
 require_once __DIR__ . '/../utils.php';
 disallowDirectAccess(__FILE__);
 
+session_start();
+
 function getTemplate(string $templateName, array|null $templateData = null)
 {
     $files = glob(__DIR__ . "/../templates/{$templateName}.html");
