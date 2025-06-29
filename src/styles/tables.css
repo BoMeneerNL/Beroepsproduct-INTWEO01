@@ -1,0 +1,14 @@
+#bestelling-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  justify-content: start;
+  margin: 20px;
+}
+
+#bestelling-container > div {
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  padding: 10px;
+  box-sizing: border-box;
+}
