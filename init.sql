@@ -24,6 +24,7 @@ CREATE TABLE Product (
   name VARCHAR(255) PRIMARY KEY,
   price DECIMAL(10,2) NOT NULL,
   type_id VARCHAR(255) NOT NULL,
+  image_link VARCHAR(255),
   FOREIGN KEY (type_id) REFERENCES ProductType(name)
 );
 
@@ -56,13 +57,6 @@ CREATE TABLE Pizza_Order_Product (
   FOREIGN KEY (product_name) REFERENCES Product(name)
 );
 
-ALTER TABLE `Product` ADD FOREIGN KEY (`type_id`) REFERENCES `ProductType` (`name`);
-ALTER TABLE `Product_Ingredient` ADD FOREIGN KEY (`product_name`) REFERENCES `Product` (`name`);
-ALTER TABLE `Product_Ingredient` ADD FOREIGN KEY (`ingredient_name`) REFERENCES `Ingredient` (`name`);
-ALTER TABLE `Pizza_Order` ADD FOREIGN KEY (`client_username`) REFERENCES `User` (`username`);
-ALTER TABLE `Pizza_Order` ADD FOREIGN KEY (`personnel_username`) REFERENCES `User` (`username`);
-ALTER TABLE `Pizza_Order_Product` ADD FOREIGN KEY (`order_id`) REFERENCES `Pizza_Order` (`order_id`);
-ALTER TABLE `Pizza_Order_Product` ADD FOREIGN KEY (`product_name`) REFERENCES `Product` (`name`);
 
 -- Alle wachtwoorden zijn nog steeds "wachtwoord", alleen voor "veiligheid" zijn ze gehasht met Argon2(id).
 
@@ -112,7 +106,7 @@ INSERT INTO ProductType (`name`) VALUES
 ('Maaltijd'),
 ('Specerij'),
 ('Voorgerecht'),
-('Drank');
+('Drinken');
 
 INSERT INTO Ingredient (`name`) VALUES
 ('Tomaat'),
@@ -124,15 +118,15 @@ INSERT INTO Ingredient (`name`) VALUES
 ('Spek'),
 ('Saus');
 
-INSERT INTO Product (`name`, price, type_id) VALUES
-('Margherita Pizza', 9.99, 'Pizza'),
-('Pepperoni Pizza', 11.99, 'Pizza'),
-('Vegetarische Pizza', 10.99, 'Pizza'),
-('Hawaiian Pizza', 12.99, 'Pizza'),
-('Combinatiemaaltijd', 15.99, 'Maaltijd'),
-('Knoflookbrood', 4.99, 'Voorgerecht'),
-('Coca Cola', 2.49, 'Drank'),
-('Sprite', 2.49, 'Drank');
+INSERT INTO Product (`name`, price, type_id,image_link) VALUES
+('Margherita Pizza', 9.99, 'Pizza','https://s4d-mth-nyp-01-nl-prd-images-cdne.azureedge.net/Products/Original/Margherita-9585.png'),
+('Pepperoni Pizza', 11.99, 'Pizza','https://s4d-mth-nyp-01-nl-prd-images-cdne.azureedge.net/Products/Original/Double_Pepperoni_Pizza_-9603.png'),
+('Vegetarische Pizza', 10.99, 'Pizza','https://s4d-mth-nyp-01-nl-prd-images-cdne.azureedge.net/Products/Original/Californian_Veggie_Pizza_-9614.png'),
+('Hawaiian Pizza', 12.99, 'Pizza','https://s4d-mth-nyp-01-nl-prd-images-cdne.azureedge.net/Products/Original/hawaii-9605.png'),
+('Combinatiemaaltijd', 15.99, 'Maaltijd',null),
+('Knoflookbrood', 4.99, 'Voorgerecht','https://s4d-mth-nyp-01-nl-prd-images-cdne.azureedge.net/Products/Original/Garlic_Bread_-9627.png'),
+('Coca Cola', 2.49, 'Drinken','https://s4d-mth-nyp-01-nl-prd-images-cdne.azureedge.net/Products/Original/coca_cola_-9699.png'),
+('Sprite', 2.49, 'Drinken','https://s4d-mth-nyp-01-nl-prd-images-cdne.azureedge.net/Products/Original/Lipton_Green_-9681.png');
 
 INSERT INTO Product_Ingredient (product_name, ingredient_name) VALUES
 ('Margherita Pizza', 'Tomaat'),
