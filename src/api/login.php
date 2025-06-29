@@ -30,7 +30,7 @@ if(!$usernameExists){
 }
 $loginDetails = $db->getWithSql(
     "SELECT * FROM User WHERE username = :username",
-    ['username' => $_POST['username']]
+    ['username' => strtolower($_POST['username'])]
 
 );
 $db->destroy();

@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
 require_once __DIR__ . '/../utils.php';
 
@@ -22,10 +24,10 @@ if (!mustAllExist($_POST['username'], $_POST['password'], $_POST['first_name'], 
 require_once __DIR__ . '/../sqlhandler.php';
 
 $db = new SQLConnection();
-
+$username = strtolower($_POST['username']);
 $countForUsername = $db->getWithSql(
     "SELECT COUNT(*) AS count FROM User WHERE username = :username",
-    ['username' => $_POST['username']]
+    ['username' => $username]
 );
 
 $usernameExists = $countForUsername[0]['count'] > 0;
@@ -35,7 +37,7 @@ if ($usernameExists) {
     exit;
 }
 $creationParams = [
-    'username' => $_POST['username'],
+    'username' => $username,
     'password' => password_hash($_POST['password'], PASSWORD_ARGON2ID),
     'first_name' => $_POST['first_name'] ?? '',
     'last_name' => $_POST['last_name'] ?? ''
@@ -47,5 +49,3 @@ $db->executeWithSql(
 
 $db->destroy();
 redirect("/login?success=" . urlencode('Account Created Successfully, you can now login on this page'));
-
-
