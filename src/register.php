@@ -1,7 +1,8 @@
 <?php
 
-session_start();
-
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 require_once "loaders/templateloader.php";
 
 printTemplate("pre_content", templateData: ["siteTitle" => "Register", "lang" => "nl"]);

@@ -3,7 +3,9 @@
 require_once 'utils.php';
 disallowDirectAccess(__FILE__);
 
-session_start();
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
 require_once 'env.php';
 
@@ -23,7 +25,7 @@ class SQLConnection
     public function destroy()
     {
         $this->conn = null;
-        
+
     }
 
     public function getWithSql(string $query = "", array|null $params = null): array

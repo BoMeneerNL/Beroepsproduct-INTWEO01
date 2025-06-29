@@ -1,3 +1,7 @@
 <?php
 $_SESSION = [];
-session_destroy();
+if(session_status() === PHP_SESSION_ACTIVE) {
+    session_unset();
+   session_destroy();
+}
+redirect("/login?success=" . urlencode('You have been logged out successfully'));
