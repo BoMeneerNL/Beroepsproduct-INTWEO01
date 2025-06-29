@@ -6,6 +6,9 @@ disallowDirectAccess(__FILE__);
 
 function getTemplate(string $templateName, array|null $templateData = null)
 {
+    if(str_starts_with($templateName, 'php$')) {
+        throw new Exception("PHP templates are not meant to be gotten, only to be printed. Use printTemplate() instead.");
+    }
     $files = glob(__DIR__ . "/../templates/{$templateName}.html");
 
     if (empty($files)) {
@@ -26,6 +29,12 @@ function getTemplate(string $templateName, array|null $templateData = null)
 function printTemplate(string $templateName, array|null $templateData = null): void
 {
     try {
+        if(str_starts_with($templateName, 'php%')) {
+            
+            $templateName = str_replace('php%', '', $templateName);
+            require_once __DIR__ . "/../templates/{$templateName}.php";
+            return;    
+        }
         echo getTemplate($templateName, $templateData);
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();

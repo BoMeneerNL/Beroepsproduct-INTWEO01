@@ -1,14 +1,26 @@
-#bestelling-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 10px;
-  justify-content: start;
-  margin: 20px;
+.product-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin:1em;
 }
-
-#bestelling-container > div {
-  border: 1px solid #ccc;
-  border-radius: 16px;
-  padding: 10px;
-  box-sizing: border-box;
+.product-table th, .product-table td {
+    border: 1px solid lightgray;
+    padding: 8px;
+    text-align: center;
+}
+.product-table th {
+    background-color: #f2f2f2;
+}
+.product-table img{
+  width: 100px;
+  height: 100px;
+}
+.product-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+.product-cell img {
+  margin: 0;
 }

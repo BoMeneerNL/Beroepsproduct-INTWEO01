@@ -61,3 +61,25 @@ function redirect(string $url, int $responseCode = 307): void
 {
     header("Location: {$url}", true, $responseCode);
 }
+function getDoubleValuesAmount(array $array){
+    $values = [];
+    foreach ($array as $item) {
+        if (!isset($values[$item])) {
+            $values[$item] = 0;
+        }
+        $values[$item]++;
+    }
+    return $values;
+
+}
+
+function resolveStatus(int $status):string{
+    return match ($status) {
+        1 => 'Bestelling ontvangen',
+        2 => 'In de oven',
+        3 => 'Klaar om bezorgd te worden',
+        4 => 'Onze bezorger is onderweg',
+        5 => 'Bezorgd, eet smakelijk!',
+        default => 'Wij hebben geen active herinnering over deze bestelling :( bel ons op als je dit leest',
+    };
+}

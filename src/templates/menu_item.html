@@ -4,7 +4,10 @@
   </div>
   <div class="menuitem-productinfo">
     <h3>{{productName}}</h3>
-    <p>€{{productPrice}}</p>
-    <button class="add-to-cart">Add to cart</button>
+    <p>€{{productPrice}} (p.s.)</p>
+    <form action="/api/addToCart">
+      <input name="amount" type="number" min="1"  value="1"/>
+      <input hidden name="itemid" value="{{productName}}"/><button class="add-to-cart">Aan winkelwagen toevoegen</button>
+    </form>
   </div>
 </div>

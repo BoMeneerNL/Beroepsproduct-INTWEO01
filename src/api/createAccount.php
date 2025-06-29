@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 
 
-if (!mustAllExist($_POST['username'], $_POST['password'], $_POST['first_name'], $_POST['last_name'])) {
+if (!mustAllExist($_POST['username'], $_POST['password'], $_POST['first_name'], $_POST['last_name'],$_POST['address'])) {
     $error = urlencode('Field Validation Failed');
     redirect("/register?error={$error}");
     exit;
@@ -40,10 +40,11 @@ $creationParams = [
     'username' => $username,
     'password' => password_hash($_POST['password'], PASSWORD_ARGON2ID),
     'first_name' => $_POST['first_name'] ?? '',
-    'last_name' => $_POST['last_name'] ?? ''
+    'last_name' => $_POST['last_name'] ?? '',
+    'address' => $_POST['address'] ?? ''
 ];
 $db->executeWithSql(
-    "INSERT INTO User (username, password,first_name,last_name, role) VALUES (:username, :password,:first_name,:last_name,'Client')",
+    "INSERT INTO User (username, password,first_name,last_name, role,address) VALUES (:username, :password,:first_name,:last_name,'Client', :address)",
     $creationParams
 );
 

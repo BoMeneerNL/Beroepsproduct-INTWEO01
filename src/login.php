@@ -6,15 +6,10 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 require_once "utils.php";
 
 
-if (isLoggedIn()) {
-    redirect("/");
-    exit();
-}
 require_once "loaders/templateloader.php";
 
 printTemplate("pre_content", templateData: ["siteTitle" => "Login", "lang" => "nl"]);
 printTemplate("load_css", templateData: ["css_location" => "/styles/forms.css"]);
-printTemplate("load_css", templateData: ["css_location" => "/styles/global.css"]);
 
 ?>
 

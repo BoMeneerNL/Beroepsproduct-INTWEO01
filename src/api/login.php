@@ -31,9 +31,10 @@ if(!$usernameExists){
      redirect("/login?error=" . urlencode('Login details not correct'));
     exit;
 }
+$username = strtolower($_POST['username']);
 $loginDetails = $db->getWithSql(
-    "SELECT * FROM User WHERE username = :username",
-    ['username' => strtolower($_POST['username'])]
+    "SELECT password,first_name,last_name,role,address FROM User WHERE username = :username",
+    ['username' => $username]
 
 );
 $db->destroy();
@@ -47,9 +48,10 @@ if(!password_verify($_POST['password'], $loginDetails[0]['password'])){
 }
 
 $_SESSION['user_data'] = [
-    'username' => $loginDetails[0]['username'],
+    'username' => $username,
     'first_name' => $loginDetails[0]['first_name'],
     'last_name' => $loginDetails[0]['last_name'],
-    'role' => $loginDetails[0]['role']
+    'role' => $loginDetails[0]['role'],
+    'address' => $loginDetails[0]['address'] ?? ''
 ];
 redirect("/");

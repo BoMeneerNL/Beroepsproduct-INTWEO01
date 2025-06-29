@@ -7,7 +7,6 @@ require_once "loaders/templateloader.php";
 
 printTemplate("pre_content", templateData: ["siteTitle" => "Register", "lang" => "nl"]);
 printTemplate("load_css", templateData: ["css_location" => "/styles/forms.css"]);
-printTemplate("load_css", templateData: ["css_location" => "/styles/global.css"]);
 
 ?>
 <div class="center-content-middle">
@@ -29,6 +28,8 @@ printTemplate("load_css", templateData: ["css_location" => "/styles/global.css"]
                 <input type="text" id="last_name" name="last_name" required>
             </div>
         </div>
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
         <input type="submit" value="Register">
     </form>
 </div>
