@@ -10,7 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 require_once __DIR__ . '/../utils.php';
 
 if (!mustAllExist($_POST['username'], $_POST['password'])) {
-    redirect("/login?error=" . urlencode('Field Validation Failed'));
+    $error = urlencode('Field Validation Failed');    
+    redirect("/login?error={$error}");
     exit;
 
 }
