@@ -6,7 +6,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 require_once "utils.php";
 
 
-if(isLoggedIn()) {
+if (isLoggedIn()) {
     redirect("/");
     exit();
 }
@@ -19,14 +19,14 @@ printTemplate("load_css", templateData: ["css_location" => "/styles/global.css"]
 ?>
 
 <div class="center-content-middle">
-<form method="post" action="/api/login" class="form-container">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required autocomplete="username">
+    <form method="post" action="/api/login" class="form-container">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required autocomplete="username">
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required autocomplete="password">
-    <input type="submit" value="Login">
-</form>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required autocomplete="password">
+        <input type="submit" value="Login">
+    </form>
 </div>
 
 <?php
