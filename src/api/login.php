@@ -25,7 +25,7 @@ $countForUsername = $db->getWithSql(
 );
 $usernameExists = $countForUsername[0]['count'] > 0;
 if(!$usernameExists){
-    header("Location: /login?error=" . urlencode('Login details not correct'), true, response_code: 307);
+     redirect("/login?error=" . urlencode('Login details not correct'));
     exit;
 }
 $loginDetails = $db->getWithSql(
@@ -35,11 +35,11 @@ $loginDetails = $db->getWithSql(
 );
 $db->destroy();
 if(!isset($loginDetails[0]['password'])){
-    header("Location: /login?error=" . urlencode('Login details not correct'), true, response_code: 307);
+    redirect("/login?error=" . urlencode('Login details not correct'));
     exit;
 }
 if(!password_verify($_POST['password'], $loginDetails[0]['password'])){
-    header("Location: /login?error=" . urlencode('Login details not correct'), true, response_code: 307);
+     redirect("/login?error=" . urlencode('Login details not correct'));
     exit;
 }
 
@@ -49,3 +49,4 @@ $_SESSION['user_data'] = [
     'last_name' => $loginDetails[0]['last_name'],
     'role' => $loginDetails[0]['role']
 ];
+redirect("/");
